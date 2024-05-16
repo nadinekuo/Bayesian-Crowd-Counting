@@ -56,9 +56,9 @@ def generate_data(im_path):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Test ')
-    parser.add_argument('--origin-dir', default='/home/teddy/UCF-QNRF_ECCV18',
+    parser.add_argument('--origin-dir', default='/UCF-QNRF_ECCV18',
                         help='original data directory')
-    parser.add_argument('--data-dir', default='/home/teddy/UCF-Train-Val-Test',
+    parser.add_argument('--data-dir', default='/UCF-Train-Val-Test',
                         help='processed data directory')
     args = parser.parse_args()
     return args
