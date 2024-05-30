@@ -5,6 +5,7 @@ import os
 from glob import glob
 import cv2
 import argparse
+import xml.etree.ElementTree as ET
 
 
 # Function to calculate the new size of an image while maintaining its aspect ratio
@@ -41,13 +42,26 @@ def find_dis(point):
     dis = np.mean(np.partition(dis, 3, axis=1)[:, 1:4], axis=1, keepdims=True)
     return dis
 
+# Extract <point> tags from annotation XML and creates np matrix of coords
+def extract_xml_points(xml_ann_path):
+    tree = ET.parse(xml_ann_path)
+    root = tree.getroot()
+    points = []
+    for obj in root.findall('object'):
+        for point in obj.findall('point'):
+            x = int(point.find('x').text)
+            y = int(point.find('y').text)
+            points.append([x, y])
+    points_arr = np.array(points)
+    return points_arr
+
 def generate_data(im_path):  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
     im = Image.open(im_path)   # <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=4256x2832 at 0x125CDA190>
     im_w, im_h = im.size
-    mat_path = im_path.replace('.jpg', '_ann.mat')   # /UCF-QNRF_ECCV18/Train/img_XXXX_ann.mat
-    # The ann.mat files contain (x, y) annotations in array
-    points = loadmat(mat_path)['annPoints'].astype(np.float32)
-    # Filter points in .mat file within the image boundaries
+    ann_path = im_path.replace('.jpg', '.xml')   # /UCF-QNRF_ECCV18/Train/img_XXXX_ann.mat
+    # Parse xml and create 2D np array of all annotation points
+    points = extract_xml_points(ann_path)
+    # Filter points within the image boundaries
     idx_mask = (points[:, 0] >= 0) * (points[:, 0] <= im_w) * (points[:, 1] >= 0) * (points[:, 1] <= im_h)
     points = points[idx_mask]
     # Get new h and w after resizing img based on min and max size, and the resize ratio used
@@ -84,7 +98,6 @@ if __name__ == '__main__':
                 if not os.path.exists(sub_save_dir):
                     os.makedirs(sub_save_dir)
                 with open('CVPR2023/{}.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
-                    # TODO: rearrange all imgs according to train, test, val split
                     for i in f:
                         im_path = os.path.join(sub_dir, i.strip())  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
                         name = os.path.basename(im_path)
