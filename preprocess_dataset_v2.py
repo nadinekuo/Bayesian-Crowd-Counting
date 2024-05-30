@@ -89,15 +89,15 @@ if __name__ == '__main__':
     min_size = 512
     max_size = 2048
 
-    for phase in ['Train', 'Test']:
+    for phase in ['Train2', 'Test']:
         sub_dir = os.path.join(args.origin_dir, phase)   # /CVPR2023/Train e.g.
-        if phase == 'Train':
+        if phase == 'Train2':
             sub_phase_list = ['train', 'val']
             for sub_phase in sub_phase_list:
                 sub_save_dir = os.path.join(save_dir, sub_phase)  # /CVPR2023-Train-Val-Test/train e.g. 
                 if not os.path.exists(sub_save_dir):
                     os.makedirs(sub_save_dir)
-                with open('CVPR2023/{}.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
+                with open('CVPR2023/{}-test.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
                     for i in f:
                         im_path = os.path.join(sub_dir, i.strip())  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
                         name = os.path.basename(im_path)
