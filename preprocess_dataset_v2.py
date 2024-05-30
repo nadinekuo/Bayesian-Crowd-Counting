@@ -89,7 +89,7 @@ if __name__ == '__main__':
     min_size = 512
     max_size = 2048
 
-    for phase in ['Train2', 'Test']:
+    for phase in ['Train', 'Test']:
         sub_dir = os.path.join(args.origin_dir, phase)   # /CVPR2023/Train e.g.
         if phase == 'Train2':
             sub_phase_list = ['train', 'val']
