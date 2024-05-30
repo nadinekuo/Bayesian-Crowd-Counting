@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     for phase in ['Train', 'Test']:
         sub_dir = os.path.join(args.origin_dir, phase)   # /CVPR2023/Train e.g.
-        if phase == 'Train2':
+        if phase == 'Train':
             sub_phase_list = ['train', 'val']
             for sub_phase in sub_phase_list:
                 sub_save_dir = os.path.join(save_dir, sub_phase)  # /CVPR2023-Train-Val-Test/train e.g. 
