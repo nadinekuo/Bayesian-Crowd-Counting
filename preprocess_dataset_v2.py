@@ -76,9 +76,9 @@ def generate_data(im_path):  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Test ')
-    parser.add_argument('--origin-dir', default='/CVPR2023',
+    parser.add_argument('--origin-dir', default='CVPR2023',
                         help='original data directory')
-    parser.add_argument('--data-dir', default='/CVPR2023-Train-Val-Test',
+    parser.add_argument('--data-dir', default='CVPR2023-Train-Val-Test',
                         help='processed data directory')
     args = parser.parse_args()
     return args
