@@ -34,12 +34,12 @@ def parse_args():
 
     parser.add_argument('--is-gray', type=bool, default=False,
                         help='whether the input image is gray')
-    parser.add_argument('--crop-size', type=int, default=512,
+    parser.add_argument('--crop-size', type=int, default=512,     # Image resolutions may vary within a dataset, but a regular CNN cannot deal with this due to limited receptive field
                         help='the crop size of the train image')
     parser.add_argument('--downsample-ratio', type=int, default=8,
                         help='downsample ratio')
 
-    parser.add_argument('--use-background', type=bool, default=True,
+    parser.add_argument('--use-background', type=bool, default=True,   # Bayesian+ uses background pixel modelling
                         help='whether to use background modelling')
     parser.add_argument('--sigma', type=float, default=8.0,
                         help='sigma for likelihood')

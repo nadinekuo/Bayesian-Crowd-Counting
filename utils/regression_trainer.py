@@ -11,7 +11,7 @@ import logging
 import numpy as np
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from  models.vgg import vgg19
-from datasets.crowd import Crowd
+from datasets.crowd import Crowd     # TODO: set to datasets.crowd_sh for Shanghai dataset
 from losses.bay_loss import Bay_Loss
 from losses.post_prob import Post_Prob
 
@@ -100,7 +100,7 @@ class RegTrainer(Trainer):
         for step, (inputs, points, targets, st_sizes) in enumerate(self.dataloaders['train']):
             inputs = inputs.to(self.device)
             st_sizes = st_sizes.to(self.device)
-            gd_count = np.array([len(p) for p in points], dtype=np.float32)
+            gd_count = np.array([len(p) for p in points], dtype=np.float32)   # Ground truth count: no. of points annotated
             points = [p.to(self.device) for p in points]
             targets = [t.to(self.device) for t in targets]
 
