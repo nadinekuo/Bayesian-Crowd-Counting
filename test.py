@@ -12,7 +12,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Test ')
     parser.add_argument('--data-dir', default='/UCF-Train-Val-Test',
                         help='training data directory')
-    parser.add_argument('--save-dir', default='/vgg',
+    parser.add_argument('--save-dir', default='/vgg-test-CVPR2023',
                         help='model directory')
     parser.add_argument('--device', default='0', help='assign device')
     args = parser.parse_args()

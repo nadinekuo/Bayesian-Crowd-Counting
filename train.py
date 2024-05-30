@@ -8,7 +8,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train ')
     parser.add_argument('--data-dir', default='/CVPR2023-Train-Val-Test',
                         help='training data directory')
-    parser.add_argument('--save-dir', default='/vgg',
+    parser.add_argument('--save-dir', default='/vgg-train-CVPR2023',
                         help='directory to save models.')
 
     parser.add_argument('--lr', type=float, default=1e-5,
