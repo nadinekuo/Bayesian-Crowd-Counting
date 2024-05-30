@@ -87,7 +87,7 @@ if __name__ == '__main__':
                     for i in f:
                         im_path = os.path.join(sub_dir, i.strip())  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
                         name = os.path.basename(im_path)
-                        print(name)                                 # Tail: img_XXXX.jpg
+                        print(name)                 # Tail: img_XXXX.jpg
                         # Get rezized im and points
                         # im = <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=4256x2832 at 0x1049D8B10>
                         # points = adjusted annotation points

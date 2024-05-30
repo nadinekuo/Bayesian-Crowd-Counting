@@ -39,9 +39,9 @@ class RegTrainer(Trainer):
             raise Exception("gpu is not available")
 
         self.downsample_ratio = args.downsample_ratio
-        self.datasets = {x: Crowd(os.path.join(args.data_dir, x),
-                                  args.crop_size,
-                                  args.downsample_ratio,
+        self.datasets = {x: Crowd(os.path.join(args.data_dir, x), # /UCF-Train-Val-Test/test and /UCF-Train-Val-Test/val
+                                  args.crop_size,                 # Default: 512
+                                  args.downsample_ratio,          # Default: 8
                                   args.is_gray, x) for x in ['train', 'val']}
         self.dataloaders = {x: DataLoader(self.datasets[x],
                                           collate_fn=(train_collate
