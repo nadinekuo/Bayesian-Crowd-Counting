@@ -6,9 +6,9 @@ args = None
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train ')
-    parser.add_argument('--data-dir', default='/CVPR2023-Train-Val-Test',
+    parser.add_argument('--data-dir', default='/IOCfish-Train-Val-Test',
                         help='training data directory')
-    parser.add_argument('--save-dir', default='/vgg-train-CVPR2023',
+    parser.add_argument('--save-dir', default='/vgg-train-IOCfish',
                         help='directory to save models.')
 
     parser.add_argument('--lr', type=float, default=1e-5,
