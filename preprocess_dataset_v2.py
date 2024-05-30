@@ -76,14 +76,15 @@ if __name__ == '__main__':
     max_size = 2048
 
     for phase in ['Train', 'Test']:
-        sub_dir = os.path.join(args.origin_dir, phase)   # /UCF-QNRF_ECCV18/Train e.g.
+        sub_dir = os.path.join(args.origin_dir, phase)   # /CVPR2023/Train e.g.
         if phase == 'Train':
             sub_phase_list = ['train', 'val']
             for sub_phase in sub_phase_list:
-                sub_save_dir = os.path.join(save_dir, sub_phase)  # /UCF-Train-Val-Test/train e.g. 
+                sub_save_dir = os.path.join(save_dir, sub_phase)  # /CVPR2023-Train-Val-Test/train e.g. 
                 if not os.path.exists(sub_save_dir):
                     os.makedirs(sub_save_dir)
-                with open('{}.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
+                with open('CVPR2023/{}.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
+                    # TODO: rearrange all imgs according to train, test, val split
                     for i in f:
                         im_path = os.path.join(sub_dir, i.strip())  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
                         name = os.path.basename(im_path)
