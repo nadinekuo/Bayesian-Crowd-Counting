@@ -1,4 +1,5 @@
-./IOCfish/Train/
-./IOCfish/Test/
-./IOCfish/Val/
-.DS_Store
+IOCfish/Train/
+IOCfish/Test/
+IOCfish/Val/
+IOCfish/Train-Val-Test/
+IOCfish/DS_Store
