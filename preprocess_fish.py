@@ -58,6 +58,8 @@ def extract_xml_points(xml_ann_path):
             points.append([x, y])
     points_arr = np.array(points)
     # print(f"\n\nPoints array:\n{points_arr}")
+    if len(points_arr) == 0:
+        print("NO POINTS")   # 1404, 
     return points_arr
 
 def generate_data(im_path):  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
