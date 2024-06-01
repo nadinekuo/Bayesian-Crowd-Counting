@@ -51,7 +51,7 @@ def extract_xml_points(xml_ann_path):
         for point in obj.findall('point'):
             x = int(point.find('x').text)
             y = int(point.find('y').text)
-            points.append([x, y])
+            points.append([x, y, 3])
     points_arr = np.array(points)
     return points_arr
 
