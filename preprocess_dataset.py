@@ -45,7 +45,7 @@ def generate_data(im_path):  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
     im = Image.open(im_path)   # <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=4256x2832 at 0x125CDA190>
     im_w, im_h = im.size
     mat_path = im_path.replace('.jpg', '_ann.mat')   # /UCF-QNRF_ECCV18/Train/img_XXXX_ann.mat
-    # The ann.mat files contain (x, y) annotations in array
+    # The ann.mat files contain [x, y] annotations in array
     points = loadmat(mat_path)['annPoints'].astype(np.float32)
     # Filter points in .mat file within the image boundaries
     idx_mask = (points[:, 0] >= 0) * (points[:, 0] <= im_w) * (points[:, 1] >= 0) * (points[:, 1] <= im_h)
