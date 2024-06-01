@@ -78,7 +78,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Test ')
     parser.add_argument('--origin-dir', default='IOCfish',
                         help='original data directory')
-    parser.add_argument('--data-dir', default='IOCfish-Train-Val-Test',
+    parser.add_argument('--data-dir', default='IOCfish-Train-Val-Test',   # TODO: In Kaggle, use kaggle/input/
                         help='processed data directory')
     args = parser.parse_args()
     return args
@@ -97,7 +97,7 @@ if __name__ == '__main__':
                 sub_save_dir = os.path.join(save_dir, sub_phase)  # /CVPR2023-Train-Val-Test/train e.g. 
                 if not os.path.exists(sub_save_dir):
                     os.makedirs(sub_save_dir)
-                with open('CVPR2023/{}.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
+                with open('{}.txt'.format(sub_phase)) as f:   # train.txt or val.txt containing rows of img_XXXX.jpg
                     for i in f:
                         im_path = os.path.join(sub_dir, i.strip())  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
                         name = os.path.basename(im_path)
