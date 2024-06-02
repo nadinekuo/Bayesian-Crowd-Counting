@@ -60,14 +60,14 @@ def extract_xml_points(xml_ann_path):
     # print(f"\n\nPoints array:\n{points_arr}")
     if len(points_arr) == 0:
         print("NO POINTS")   # 1404, 
-    return points_arr
+    return points_arr, len(points_arr)
 
 def generate_data(im_path):  # /UCF-QNRF_ECCV18/Train/img_XXXX.jpg
     im = Image.open(im_path)   # <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=4256x2832 at 0x125CDA190>
     im_w, im_h = im.size
     ann_path = im_path.replace('.jpg', '.xml')   # /UCF-QNRF_ECCV18/Train/img_XXXX_ann.mat
     # Parse xml and create 2D np array of all annotation points
-    points = extract_xml_points(ann_path)
+    points, num_points = extract_xml_points(ann_path)
     if len(points) >= 1:
         # Filter points within the image boundaries
         idx_mask = (points[:, 0] >= 0) * (points[:, 0] <= im_w) * (points[:, 1] >= 0) * (points[:, 1] <= im_h)
