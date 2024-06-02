@@ -5,3 +5,4 @@ IOCfish-Train-Val-Test/
 vgg-train-IOCfish/
 IOCfish/.DS_Store
 /.DS_Store
+__pycache__/
