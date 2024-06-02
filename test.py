@@ -2,6 +2,7 @@ import torch
 import os
 import numpy as np
 from datasets.crowd_fish import CrowdFish
+from datasets.crowd import Crowd
 from models.vgg import vgg19
 import argparse
 
@@ -25,8 +26,8 @@ if __name__ == '__main__':
 
     # TODO: replace with own Dataloader for IOCfish
     # /IOCfish-Train-Val-Test/test
-    # datasets = Crowd(os.path.join(args.data_dir, 'test'), 512, 8, is_gray=False, method='val')
-    datasets = CrowdFish(os.path.join(args.data_dir, 'test'), method='val')
+    datasets = Crowd(os.path.join(args.data_dir, 'test'), 512, 8, is_gray=False, method='val')
+    # datasets = CrowdFish(os.path.join(args.data_dir, 'test'), method='val')
     dataloader = torch.utils.data.DataLoader(datasets, 1, shuffle=False,
                                              num_workers=8, pin_memory=False)
     model = vgg19()

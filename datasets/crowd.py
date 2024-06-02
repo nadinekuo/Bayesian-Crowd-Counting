@@ -34,6 +34,8 @@ class Crowd(data.Dataset):
 
         self.root_path = root_path
         self.im_list = sorted(glob(os.path.join(self.root_path, '*.jpg')))
+        print(f"\nRoot path: {self.root_path}")
+        print(f"\nLen of img list: {len(self.im_list)}\n\n")
         if method not in ['train', 'val']:
             raise Exception("not implement")
         self.method = method
