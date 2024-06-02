@@ -13,6 +13,7 @@ class CrowdFish(data.Dataset):
 
         self.root_path = root_path
         self.im_list = sorted(glob(os.path.join(self.root_path, '*.jpg')))
+        print(f"Len of img list: {len(self.im_list)}")
         if method not in ['train', 'val']:
             raise Exception("not implement")
         self.method = method
@@ -36,3 +37,8 @@ class CrowdFish(data.Dataset):
             #  for inputs, count, name in dataloader
             #   for inputs, count, name in self.dataloaders['val']:
             return img, len(keypoints), name   
+
+if __name__ == "__main__":
+    fish_dir = os.path.join("../IOCfish-Train-Val-Test", "test")   # /IOCfish-Train-Val-Test/test
+    fish_dataset = CrowdFish(root_path=fish_dir)
+    print(len(fish_dataset))
